@@ -1,43 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
+import { Facebook } from 'lucide-react';
 
 export default function Component() {
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  const [email, setEmail] = useState('')
-
-  useEffect(() => {
-    const countDownDate = new Date("2024-12-31T23:59:59").getTime()
-
-    const updateCountdown = () => {
-      const now = new Date().getTime()
-      const distance = countDownDate - now
-
-      setCountdown({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
-      })
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would typically send the email to your backend
-    console.log('Submitted email:', email)
-    setEmail('')
-    alert('Thanks for signing up! We\'ll notify you when we launch.')
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-400 to-fuchsia-50 text-primary-foreground flex flex-col justify-center items-center p-4">
@@ -62,11 +28,11 @@ export default function Component() {
 
         <div className="flex justify-center space-x-4">
           {[
-            { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61565499856128", label: "Facebook", color: "blue" },
+            { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61565499856128", label: "Facebook" },
             // { Icon: Twitter, href: "#", label: "Twitter" },
             // { Icon: Instagram, href: "#", label: "Instagram" },
             // { Icon: Mail, href: "#", label: "Email" },
-          ].map(({ Icon, href, label, color }) => (
+          ].map(({ Icon, href, label }) => (
             <a
               key={label}
               href={href}
